@@ -6,22 +6,6 @@ import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "./RichTextComponents";
 
 
-export const revalidate = 60; // revalidate this page every 60 seconds
-
-export async function generateStaticParams() {
-  const query = groq`*[_type=='post']
-    {
-      slug
-    }`;
-
-  const slugs = await client.fetch(query);
-  const slugRoutes = slugs.map((slug) => slug.slug.current);
-
-  return slugRoutes.map((slug) => ({
-    slug,
-  }));
-}
-
 async function Post({ params: { slug } }) {
   const query = groq`*[_type=='post' && slug.current == $slug][0]
     {
