@@ -6,7 +6,7 @@ import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "./RichTextComponents";
 
 
-export const revalidate = 60; // revalidate this page every 60 seconds
+export const revalidate = 1; // revalidate this page every 60 seconds
 
 export async function generateStaticParams() {
   const query = groq`*[_type=='post']
